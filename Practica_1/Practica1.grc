@@ -1,12 +1,12 @@
 options:
   parameters:
-    author: ''
+    author: CAMILA_JULIAN_ANDRES
     catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
     comment: ''
-    copyright: ''
-    description: ''
+    copyright: UIS
+    description: AAA
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: qt_gui
@@ -33,60 +33,6 @@ options:
     state: enabled
 
 blocks:
-- name: Amplitud12
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: ''
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '0.1'
-    stop: '1'
-    value: '0'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [648, 12.0]
-    rotation: 0
-    state: true
-- name: frecuencia12
-  id: variable
-  parameters:
-    comment: ''
-    value: '1500'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [296, 12.0]
-    rotation: 0
-    state: enabled
-- name: frecuencia12
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: ''
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: -samp_rate/2
-    step: '100'
-    stop: samp_rate/2
-    value: '0'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [480, 12.0]
-    rotation: 0
-    state: disabled
 - name: samp_rate
   id: variable
   parameters:
@@ -96,7 +42,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [184, 12]
+    coordinate: [216, 20.0]
     rotation: 0
     state: enabled
 - name: blocks_throttle_0
@@ -129,7 +75,7 @@ blocks:
     repeat: 'True'
     tags: '[]'
     type: float
-    vector: (0, 0, 0)
+    vector: (2, 4, -7)
     vlen: '1'
   states:
     bus_sink: false
@@ -141,36 +87,27 @@ blocks:
 - name: epy_block_0
   id: epy_block
   parameters:
-    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
-      \ GRC will instantiate the first class it finds\nto get ports and parameters\
-      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
-      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
-      from gnuradio import gr\n\n\nclass blk(gr.sync_block):  # other base classes\
-      \ are basic_block, decim_block, interp_block\n    \"\"\"Embedded Python Block\
-      \ example - a simple multiply const\"\"\"\n\n    def __init__(self, example_param=1.0):\
-      \  # only default arguments here\n        \"\"\"arguments to this function show\
-      \ up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n         \
-      \   self,\n            name='Embedded Python Block',   # will show up in GRC\n\
-      \            in_sig=[np.complex64],\n            out_sig=[np.complex64]\n  \
-      \      )\n        # if an attribute with the same name as a parameter is found,\n\
-      \        # a callback is registered (properties work, too).\n        self.example_param\
-      \ = example_param\n\n    def work(self, input_items, output_items):\n      \
-      \  \"\"\"example: multiply with constant\"\"\"\n        output_items[0][:] =\
-      \ input_items[0] * self.example_param\n        return len(output_items[0])\n"
+    _source_code: "import numpy as np\nfrom gnuradio import gr\nclass blk (gr. sync_block\
+      \ ):\n\tdef __init__ ( self , example_param=1.0) : # only default arguments\
+      \ here\n\t\tgr. sync_block. __init__ (\n\t\t\tself ,\n\t\t\tname ='e_Acum ',\
+      \ # will show up in GRC\n\t\t\tin_sig =[ np.float32 ],\n\t\t \tout_sig =[ np.float32\
+      \ ]\n\t\t)\n\t\tself.example_param = example_param\n\tdef work (self , input_items\
+      \ , output_items ):\n\t\tx = input_items [0] # Senial de entrada .\n\t\ty0 =\
+      \ output_items [0] # Senial acumulada\n\t\ty0 [:] = np. cumsum (x)\n\t\treturn\
+      \ len (y)\n"
     affinity: ''
     alias: ''
     comment: ''
-    example_param: ''
+    example_param: '1.0'
     maxoutbuf: '0'
     minoutbuf: '0'
   states:
-    _io_cache: ('Embedded Python Block', 'blk', [('example_param', '1.0')], [('0',
-      'complex', 1)], [('0', 'complex', 1)], 'Embedded Python Block example - a simple
-      multiply const', ['example_param'])
+    _io_cache: ('e_Acum ', 'blk', [('example_param', '1.0')], [('0', 'float', 1)],
+      [('0', 'float', 1)], '', ['example_param'])
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 356.0]
+    coordinate: [696, 356.0]
     rotation: 0
     state: true
 - name: qtgui_vector_sink_f_0
