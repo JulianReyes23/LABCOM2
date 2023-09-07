@@ -33,7 +33,7 @@ import signal
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
-import default_epy_block_0 as epy_block_0  # embedded python block
+import diferenciador_epy_block_0 as epy_block_0  # embedded python block
 
 
 
